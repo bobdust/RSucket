@@ -27,8 +27,8 @@ abstract class PipelineBase implements Pipeline {
 		id = UUID.randomUUID().toString();
 		
 		receivingQueues = new ConcurrentHashMap<UUID, ConcurrentLinkedQueue<Package>>();
+		final PipelineBase me = this;
 		receivingTask = new Task(){
-
 			@Override
 			public void run() throws IOException {
 				byte[] buffer = new byte[BUFFER_SIZE];
@@ -44,7 +44,6 @@ abstract class PipelineBase implements Pipeline {
 							try {
 								packageReceived(p);
 							} catch (IOException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}
@@ -55,10 +54,15 @@ abstract class PipelineBase implements Pipeline {
 
 			@Override
 			public void handleException(Exception exception) {
-				exception.printStackTrace();
-			}
-			
+				me.onException(exception);
+			}			
 		};
+	}
+	
+	@Override
+	public void onException(Exception exception)
+	{
+		exception.printStackTrace();
 	}
 	
 	private void packageReceived(Package p) throws IOException

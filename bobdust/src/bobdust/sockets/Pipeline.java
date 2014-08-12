@@ -11,5 +11,5 @@ interface Pipeline {
 	void close();
 	void send(BinarySequence data) throws IOException;
 	void setReceiver(PipelineReceiver receiver);
-
+	void onException(Exception exception);
 }

@@ -19,4 +19,11 @@ abstract class PipelineDecorator extends PipelineBase {
 	{
 		this.pipeline = pipeline;
 	}
+	
+	@Override
+	public void onException(Exception exception)
+	{
+		pipeline.onException(exception);
+		close();
+	}
 }

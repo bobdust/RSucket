@@ -9,7 +9,7 @@ class SocketPipeline extends PipelineBase {
 	private Socket receiveSocket;
 
 	public SocketPipeline(Socket socket)	
-	{
+	{		
 		this(socket, socket);
 	}
 	
@@ -33,5 +33,22 @@ class SocketPipeline extends PipelineBase {
 	public int read(byte[] buffer) throws IOException {
 		return receiveSocket.getInputStream().read(buffer);
 	}
-
+	
+	@Override
+	public void close()
+	{
+		try {
+			sendSocket.close();
+			receiveSocket.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void onException(Exception exception)
+	{
+		super.onException(exception);
+		close();
+	}
 }
