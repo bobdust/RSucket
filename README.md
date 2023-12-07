@@ -4,7 +4,7 @@
 * Quick summary: RPC socket library and a sample to use it.
 * Version: 1.0.0.0
 
-* Refer to bobdust.rpc.hellworld for the sample.
+* Refer to bobdust.rpc.helloworld for the sample.
 * Dependencies: JRE 7, javassist.
 
 * Please contact ceillingbob@gmail.com for any enqueries.
