@@ -23,4 +23,4 @@
 > 
 > So as I pray,
 > 
-> ==unlimited open source==.
+> ***unlimited open source***.
